@@ -15,14 +15,21 @@ const UrlValueParser = require('url-value-parser');
  *
  * @param {!string} path - url path.
  * @param {Array} extraMasks - array of regexps which will replace
+ * @param {Array} replaceMasks - array of regexps which will replace
  * values in the URL.
  * @param {string} [placeholder='#val'] - the placeholder that will replace id
  * like params in the url path.
  * @returns {string} a normalized path, withoud ids.
  */
-function normalizePath(originalUrl, extraMasks = [], placeholder = '#val') {
+function normalizePath(originalUrl, extraMasks = [], replaceMasks, placeholder = '#val') {
   const { pathname } = url.parse(originalUrl);
-  const urlParser = new UrlValueParser({ extraMasks });
+  var urlParser
+
+  if (replaceMasks != null) {
+    urlParser = new UrlValueParser({ replaceMasks, extraMasks });
+  } else {
+    urlParser = new UrlValueParser({ extraMasks });
+  }
   return urlParser.replacePathValues(pathname, placeholder);
 }
 

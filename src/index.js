@@ -26,6 +26,7 @@ const defaultOptions = {
   requestLengthBuckets: [],
   responseLengthBuckets: [],
   extraMasks: [],
+  replaceMasks: null,
   customLabels: [],
   transformLabels: null,
   normalizeStatus: true,
@@ -70,7 +71,7 @@ module.exports = (userOptions = {}) => {
     // will replace ids from the route with `#val` placeholder this serves to
     // measure the same routes, e.g., /image/id1, and /image/id2, will be
     // treated as the same route
-    const route = normalizePath(originalUrl, options.extraMasks);
+    const route = normalizePath(originalUrl, options.extraMasks, options.replaceMasks);
 
     if (route !== metricsPath) {
       const status = normalizeStatus
