@@ -21,9 +21,9 @@ const UrlValueParser = require('url-value-parser');
  * like params in the url path.
  * @returns {string} a normalized path, withoud ids.
  */
-function normalizePath(originalUrl, extraMasks = [], replaceMasks, statusCode = 0, placeholder = '#val') {
+function normalizePath(originalUrl, extraMasks = [], replaceMasks, status = 0, placeholder = '#val') {
   if (status == 404) {
-    return 'NotFoundPath';
+    return '/not_found';
   }
   const { pathname } = url.parse(originalUrl);
   var urlParser
