@@ -1,6 +1,6 @@
 {
   "name": "smapp-express-prometheus-middleware",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "description": "RED/USE metrics for express applications",
   "keywords": [
     "express",
